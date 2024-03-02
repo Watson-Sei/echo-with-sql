@@ -11,12 +11,16 @@ services:
       DB_NAME: master
     depends_on:
       - db
+    volumes:
+      - ./db/migrations:/api/migrations
   db:
     image: postgres
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: 12345
       POSTGRES_DB: master
+    ports:
+      - "5432:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
 volumes:
